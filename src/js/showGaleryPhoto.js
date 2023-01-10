@@ -1,3 +1,5 @@
+import SimpleLightbox from 'simplelightbox';
+
 export default function showGaleryPhoto(hits) {
   return hits
     .map(
@@ -35,3 +37,7 @@ export default function showGaleryPhoto(hits) {
     )
     .join('');
 }
+
+new SimpleLightbox('.gallery a', {
+  captionDelay: 250,
+});

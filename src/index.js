@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { Notify } from 'notiflix';
-import debounce from 'lodash.debounce';
-import { fetchPhoto } from './js/fetchPhoto';
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 import showGaleryPhoto from './js/showGaleryPhoto';
 import ApiService from './js/pixabay-service';
+import './css/styles.css';
 
 const refs = {
   form: document.querySelector('.search-form'),
@@ -14,6 +15,12 @@ const refs = {
 
 refs.form.addEventListener('submit', onSearch);
 refs.loadMore.addEventListener('click', onloadMore);
+
+const lightbox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
+  alertError: false,
+});
 
 const apiService = new ApiService();
 
@@ -39,7 +46,13 @@ function onloadMore() {
 }
 
 function appendHitsMarcup(hits) {
+  if (!hits.length) {
+    return Notify.info(
+      'Sorry, there are no images matching your search query. Please try again.'
+    );
+  }
   refs.gallery.insertAdjacentHTML('beforeend', showGaleryPhoto(hits));
+  lightbox.refresh();
 }
 
 function clearMarcup() {
