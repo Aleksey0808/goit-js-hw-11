@@ -117,3 +117,17 @@ img {
   text-decoration: none;
   color: #2a2a2a;
 }
+
+.info {
+  display: flex;
+  align-items: flex-start;
+  text-align: center;
+  justify-content: start;
+}
+
+.info-item {
+  display: block;
+  width: 100px;
+  font-size: 16px;
+  padding-right: 4px;
+}
