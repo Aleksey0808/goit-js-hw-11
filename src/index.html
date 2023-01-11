@@ -8,14 +8,21 @@
     <script type="module" src="./index.js"></script>
   </head>
   <body>
-    <form class="search-form" id="search-form">
-      <input class="input" type="text" name="searchQuery" autocomplete="off" placeholder="Search images..." />
-      <button class="button" type="submit">Search</button>
-    </form>
-    <div class="gallery">
+    <div class="container">
+      <form class="search-form" id="search-form">
+        <input class="input" type="text" name="searchQuery" autocomplete="off" placeholder="Search images..." />
+        <button class="button" type="submit">Search</button>
+      </form>
+      <div class="gallery">
 
+      </div>
+
+      <button type="button" class="load-more button" data-action="load-more">
+        <span class="wait is-hidden" role="status" aria-hidden="true"></span>
+
+        <span class="label">load-more</span>
+      </button>
+      <script src="index.js" type="module"></script>
     </div>
-    <button type="button" data-action="load-more" class="load-more">Load more</button>
-    <script src="index.js" type="module"></script>
   </body>
 </html>

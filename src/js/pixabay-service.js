@@ -7,25 +7,28 @@ export default class ApiService {
   constructor() {
     this.searchQuery = '';
     this.page = 1;
+    this.per_page = 40;
   }
 
   async searchPhoto() {
-console.log(this)
+    console.log(this);
     // const url = `${BASE_URL}/?key=${API_KEY}&q=${this.searchQuery}&image_type=photo&orientation=horizontal&safesearch=true$page=${this.page}&per_page=40`;
 
     try {
       this.incrementPage();
-      return await axios.get(BASE_URL, {
-        params: {
-          key: API_KEY,
-          q: this.searchQuery,
-          image_type: 'photo',
-          orientation: 'horizontal',
-          safesearch: true,
-          page: this.page,
-          per_page: 40,
-        },
-      }).then(response => response.data.hits);
+      return await axios
+        .get(BASE_URL, {
+          params: {
+            key: API_KEY,
+            q: this.searchQuery,
+            image_type: 'photo',
+            orientation: 'horizontal',
+            safesearch: true,
+            page: this.page,
+            per_page: this.per_page,
+          },
+        })
+        .then(response => response.data);
     } catch (error) {
       console.error(error);
     }
@@ -33,6 +36,7 @@ console.log(this)
 
   incrementPage() {
     this.page += 1;
+    this.per_page;
   }
 
   resetPage() {

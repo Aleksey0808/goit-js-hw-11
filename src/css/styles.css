@@ -9,6 +9,11 @@ body {
     Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   line-height: 1.5;
   color: #2a2a2a;
+  background-color: rgb(235, 236, 226);
+}
+
+.container {
+  margin: 10px;
 }
 
 img {
@@ -19,15 +24,50 @@ img {
 
 .search-form {
   display: flex;
-  /* justify-content: center; */
+  flex-direction: column;
   padding: 8px;
+  margin: 6px;
   margin-bottom: 24px;
+
+  background-color: #101221;
+  border-radius: 10px;
 }
 
 .button {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 10px;
+
+  padding: 12px 34px;
+  border: 0;
+  min-height: 42px;
+  min-width: 164px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  align-items: center;
+  text-align: center;
+  color: #ffffff;
+  background-color: #2F303A;
+  border: 2px solid #757575;
+  border-radius: 15px;
+  box-shadow: 5px 3px 10px rgb(165, 165, 165);
+}
+
+.label {
+  display: block;
+  padding: 12px 22px;
+
+  min-height: 40px;
+  font-size: 14px;
+  line-height: 17px;
+  color: #ffffff;
+  background-color: #2F303A;
+  border: 2px solid #757575;
+  border-radius: 15px;
+  box-shadow: 10px 5px 5px rgb(0, 0, 0);
 }
 
 .button.is-hidden {
@@ -35,7 +75,9 @@ img {
 }
 
 .input {
+  display: flex;
   margin: 0 auto;
+  padding: 10px;
   width: 600px;
   border: 2px solid green;
 }
@@ -43,14 +85,9 @@ img {
 .load-more {
   display: flex;
   margin: 0 auto;
-  
+
 }
 
-/* .button>.spinner.is-hidden {
-  display: none;
-} */
-
-/* Article List */
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
