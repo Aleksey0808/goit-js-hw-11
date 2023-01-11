@@ -33,7 +33,7 @@ function onSearch(e) {
 
   if (apiService.searchQuery === '') {
     return Notify.info(
-      'Too many matches found. Please enter a more specific name.'
+      'Nothing entered in the search box.'
     );
   }
 
