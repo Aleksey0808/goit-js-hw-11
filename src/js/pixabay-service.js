@@ -11,9 +11,6 @@ export default class ApiService {
   }
 
   async searchPhoto() {
-    console.log(this);
-    // const url = `${BASE_URL}/?key=${API_KEY}&q=${this.searchQuery}&image_type=photo&orientation=horizontal&safesearch=true$page=${this.page}&per_page=40`;
-
     try {
       this.incrementPage();
       return await axios
@@ -30,7 +27,7 @@ export default class ApiService {
         })
         .then(response => response.data);
     } catch (error) {
-      console.error(error);
+      throw new Error(error);
     }
   }
 

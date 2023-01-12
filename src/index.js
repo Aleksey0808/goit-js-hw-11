@@ -30,9 +30,7 @@ const lightbox = new SimpleLightbox('.gallery a', {
   alertError: false,
 });
 
-console.log(loadMoreBth);
-
-function onSearch(e) {
+async function onSearch(e) {
   e.preventDefault();
 
   clearMarcup();
@@ -46,39 +44,41 @@ function onSearch(e) {
   loadMoreBth.show();
   loadMoreBth.disable();
   apiService.resetPage();
-  apiService.searchPhoto().then(data => {
-    appendHitsMarcup(data)
+
+  try {
+    const data = await apiService.searchPhoto();
+    appendHitsMarcup(data);
     Notify.success(`'Hooray! We found ${data.totalHits} images.'`);
-  });
-  
+  } catch {
+    Notify.failure('server error');
+  }
 }
 
-function onloadMore() {
-  apiService.searchPhoto().then(data => {
+async function onloadMore() {
+  loadMoreBth.disable();
+  try {
+    const data = await apiService.searchPhoto();
     appendHitsMarcup(data);
     loadMoreBth.enable();
-  });
-  loadMoreBth.disable();
+  } catch {
+    Notify.failure('server error');
+  }
 }
 
 function appendHitsMarcup(data) {
   const totalPage = Math.ceil(data.totalHits / apiService.per_page);
   totalHits = data.totalHits;
   if (apiService.page >= totalPage) {
-     Notify.failure(
-      'We`re sorry but you`ve reached the end of search results'
-    );
+    Notify.failure('We`re sorry but you`ve reached the end of search results');
     loadMoreBth.hide();
   }
-  console.log(totalHits);
 
   if (!data.hits.length) {
     return Notify.failure(
       'Sorry, there are no images matching your search query. Please try again.'
     );
   }
-  console.log(data.hits.length);
-  // Notify.success(`'Hooray! We found ${data.hits.length} images.'`);
+
   refs.gallery.insertAdjacentHTML('beforeend', showGaleryPhoto(data.hits));
   smoothScrolling();
   loadMoreBth.enable();
