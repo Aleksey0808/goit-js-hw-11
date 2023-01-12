@@ -68,6 +68,7 @@ async function onloadMore() {
 function appendHitsMarcup(data) {
   const totalPage = Math.ceil(data.totalHits / apiService.per_page);
   totalHits = data.totalHits;
+  console.log(totalHits);
   if (apiService.page >= totalPage) {
     Notify.failure('We`re sorry but you`ve reached the end of search results');
     loadMoreBth.hide();
