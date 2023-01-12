@@ -46,7 +46,11 @@ function onSearch(e) {
   loadMoreBth.show();
   loadMoreBth.disable();
   apiService.resetPage();
-  apiService.searchPhoto().then(appendHitsMarcup);
+  apiService.searchPhoto().then(data => {
+    appendHitsMarcup(data)
+    Notify.success(`'Hooray! We found ${data.totalHits} images.'`);
+  });
+  
 }
 
 function onloadMore() {
@@ -59,12 +63,14 @@ function onloadMore() {
 
 function appendHitsMarcup(data) {
   const totalPage = Math.ceil(data.totalHits / apiService.per_page);
-  if (apiService.page === totalPage) {
-    return Notify.failure(
+  totalHits = data.totalHits;
+  if (apiService.page >= totalPage) {
+     Notify.failure(
       'We`re sorry but you`ve reached the end of search results'
     );
+    loadMoreBth.hide();
   }
-  console.log(totalPage);
+  console.log(totalHits);
 
   if (!data.hits.length) {
     return Notify.failure(
@@ -72,7 +78,7 @@ function appendHitsMarcup(data) {
     );
   }
   console.log(data.hits.length);
-  Notify.success(`'Hooray! We found ${data.hits.length} images.'`);
+  // Notify.success(`'Hooray! We found ${data.hits.length} images.'`);
   refs.gallery.insertAdjacentHTML('beforeend', showGaleryPhoto(data.hits));
   smoothScrolling();
   loadMoreBth.enable();

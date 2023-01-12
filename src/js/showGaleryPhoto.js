@@ -18,7 +18,7 @@ export default function showGaleryPhoto(hits) {
   <img src="${webformatURL}" alt="${tags}" loading="lazy" />
   <div class="info">
     <p class="info-item">
-      <b>Likes ${likes}</b>
+      <b>Likes <br> ${likes}</b>
     </p>
     <p class="info-item">
       <b>Views ${views}</b>

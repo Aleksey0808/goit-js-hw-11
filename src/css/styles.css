@@ -122,12 +122,12 @@ img {
   display: flex;
   align-items: flex-start;
   text-align: center;
-  justify-content: start;
+  justify-content: space-between;
+  border: 1px solid #101221;
 }
 
 .info-item {
   display: block;
   width: 100px;
   font-size: 16px;
-  padding-right: 4px;
 }
