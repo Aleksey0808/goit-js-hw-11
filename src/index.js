@@ -61,7 +61,7 @@ async function onloadMore() {
     appendHitsMarcup(data);
     loadMoreBth.enable();
   } catch {
-    Notify.failure('server error');
+    Notify.failure('server error2');
   }
 }
 
